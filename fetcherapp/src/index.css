@@ -1,0 +1,241 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.loader {
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease;
+}
+ 
+.spinner {
+  --size: 30px;
+  --first-block-clr: #005bba;
+  --second-block-clr: #fed500;
+  --clr: #111;
+  width: 100px;
+  height: 100px;
+  position: relative;
+ }
+ 
+ .spinner::after,.spinner::before {
+  box-sizing: border-box;
+  position: absolute;
+  content: "";
+  width: var(--size);
+  height: var(--size);
+  top: 50%;
+  animation: up 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+  left: 50%;
+  background: var(--first-block-clr);
+ }
+ 
+ .spinner::after {
+  background: var(--second-block-clr);
+  top: calc(50% - var(--size));
+  left: calc(50% - var(--size));
+  animation: down 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+ }
+ 
+ @keyframes down {
+  0%, 100% {
+   transform: none;
+  }
+ 
+  25% {
+   transform: translateX(100%);
+  }
+ 
+  50% {
+   transform: translateX(100%) translateY(100%);
+  }
+ 
+  75% {
+   transform: translateY(100%);
+  }
+ }
+ 
+ @keyframes up {
+  0%, 100% {
+   transform: none;
+  }
+ 
+  25% {
+   transform: translateX(-100%);
+  }
+ 
+  50% {
+   transform: translateX(-100%) translateY(-100%);
+  }
+ 
+  75% {
+   transform: translateY(-100%);
+  }
+ }
+ 
+
+.container {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  width: 100%;
+  z-index: -1;
+  transition: background-color 0.5s ease;
+  display: flex;
+  justify-content: end;
+  padding-top: 20px;
+}
+
+body.light-mode .container {
+  background-color: #ffffff;
+}
+
+body.dark-mode .container {
+  background-color: #000000;
+}
+
+.toggle-wrapper {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.label {
+  height: 60px;
+  width: 120px;
+  background-color: #ffffff;
+  border-radius: 30px;
+  box-shadow: inset 0 0 5px 4px rgba(255, 255, 255, 1),
+    inset 0 0 20px 1px rgba(0, 0, 0, 0.488),
+    10px 20px 30px rgba(0, 0, 0, 0.096),
+    inset 0 0 0 3px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.4s;
+}
+
+.label:hover {
+  transform: perspective(100px) rotateX(5deg) rotateY(-5deg);
+}
+
+#checkbox:checked ~ .label:hover {
+  transform: perspective(100px) rotateX(-5deg) rotateY(5deg);
+}
+
+#checkbox {
+  display: none;
+}
+
+#checkbox:checked ~ .label::before {
+  left: 70px;
+  background-color: #000000;
+  background-image: linear-gradient(315deg, #000000 0%, #414141 70%);
+  transition: 0.4s;
+}
+
+.label::before {
+  position: absolute;
+  content: "";
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: #000000;
+  background-image: linear-gradient(130deg, #757272 10%, #ffffff 11%, #726f6f 62%);
+  left: 10px;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3),
+    10px 10px 10px rgba(0, 0, 0, 0.3);
+  transition: 0.4s;
+}
+
+.user-card {
+  width: 260px;
+  margin: 50px auto;
+  padding: 20px 15px;
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  color: #00ff6a; 
+  position: relative;
+  overflow: hidden;
+}
+
+.user-card::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 16px;
+  background: radial-gradient(circle at top left, rgba(0, 255, 106, 0.1), transparent);
+  z-index: -1;
+}
+
+body.dark-mode .user-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode .user-card {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.user-card img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  margin-bottom: 15px;
+}
+
+.user-card h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.user-card p {
+  margin: 2px 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+#fetchUserBtn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  background-image: linear-gradient(135deg, #00ff99, #00ccff, #3366ff);
+  color: white;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  background-size: 200%;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+#fetchUserBtn:hover {
+  background-position: right center;
+  transform: scale(1.07);
+  box-shadow: 0 8px 20px rgba(0, 255, 150, 0.4);
+}

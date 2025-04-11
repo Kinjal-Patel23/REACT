@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1f2937; /* Dark slate gray-blue background */
+  }
+  
+  
+  .table-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+  }
+  
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-center {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .dropdown-right {
+    width: 200px;
+    text-align: right;
+  }
+  
+  .search-box {
+    width: 250px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
+  }
+  
+  .dropdown-select {
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
+    background-color: white;
+  }
+  
+  .card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    overflow-x: auto;
+    margin-top: 50px;
+  }
+  
+  .styled-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .styled-table th,
+  .styled-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .styled-table thead {
+    background-color: #2c3e50;
+    color: #fff;
+  }
+  
+  .styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  

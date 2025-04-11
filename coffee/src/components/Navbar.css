@@ -1,0 +1,149 @@
+.header {
+    width: 100%;
+    height: 750px;
+    background-image: url('assets/bg_1.webp');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.40);
+}
+
+.header .subHeader {
+    width: 100%;
+    height: 90px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.header .subHeader .logo {
+    width: 89px;
+    height: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header .subHeader .logo h2 {
+    color: #fff;
+    font-weight: 300;
+}
+
+.header .subHeader .logo p {
+    font-size: 13px;
+    color: #fff;
+    letter-spacing: 8px;
+}
+
+.header .subHeader .navbar {
+    width: 1005px;
+    height: 74px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 40px;
+    padding-right: 30px;
+}
+
+.header .subHeader .navbar a{
+    text-decoration: none;
+    font-size: 13px;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.header .subHeader .navbar a:hover {
+    color: #c49b63;
+}
+
+#home {
+    color: #c49b63;
+}
+
+.cartIcon {
+    color: #fff;
+    font-size: 18px;
+}
+
+.header .heroCont {
+    width: 760px;
+    height: 370px;
+    position: relative;
+    margin-top: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.header .heroCont .welcomeTtl {
+    font-size: 30px;
+    color: #c49b63;
+    font-weight: 300;
+}
+
+.header .heroCont .heroContTtl {
+    color: #fff;
+    font-size: 40px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.header .heroCont .heroContent {
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+}
+
+.header .heroCont .btnGroups {
+    width: 730px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    gap : 8px;
+}
+
+.header .heroCont .btnGroups .orderBtn {
+    width: 120px;
+    height: 50px;
+    background-color: #B18D5B;
+    border: none;
+}
+
+.header .heroCont .btnGroups .orderBtn:hover {
+    background-color: transparent;
+    border: 1px solid #B18D5B;
+    color: #B18D5B;
+    transition: 0.5s;
+}
+
+.header .heroCont .btnGroups .menuBtn {
+    width: 120px;
+    height: 50px;
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+.header .heroCont .btnGroups .menuBtn:hover {
+    background-color: #B18D5B;
+    color: #000;
+    transition: 0.5s;
+    border: 1px solid #B18D5B;
+} 
