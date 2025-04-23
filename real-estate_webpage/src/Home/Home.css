@@ -1,0 +1,14 @@
+   @keyframes scrollLeftCustom {
+       0% {
+           transform: translateX(2%); /* Start at 0% */
+       }
+
+       100% {
+           transform: translateX(-100%); /* Scroll all the boxes */
+       }
+   }
+
+   .animate-scroll-custom {
+       display: flex;
+       animation: scrollLeftCustom 30s linear infinite; /* Slow down the speed to make it smoother */
+   }

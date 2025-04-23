@@ -1,0 +1,165 @@
+body {
+    background-color: #5B84B1FF;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+.user-form {
+    /* background-color: #58A86C;  */
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: 460px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+
+.user-form h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333333;
+}
+
+.user-form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #000;
+}
+
+.user-form input,
+.user-form select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    margin-bottom: 18px;
+    box-sizing: border-box;
+    transition: 0.3s;
+    height: 45px;
+    background-color: transparent;
+}
+
+.user-form input:focus,
+.user-form select:focus {
+    border-color: #5B84B1;
+    box-shadow: 0 0 4px rgba(91, 132, 177, 0.5);
+}
+
+.user-form input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #3D5A80;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    height: 45px;
+}
+
+.user-form input[type="submit"]:hover {
+    background-color: #1d3557;
+}
+
+/* .user-card {
+    border: 2px solid #ddd;
+    padding: 20px;
+    margin: 30px auto;
+    width: 350px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .user-card h2 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+  }
+  
+  .user-card p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .user-card strong {
+    color: #000;
+  } */
+
+  .id-card {
+    width: 300px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    font-family: sans-serif;
+    margin: 20px auto;
+    background-color: white;
+  }
+  
+  .card-header {
+    background: linear-gradient(to right, #000000, #333);
+    color: white;
+    text-align: center;
+    padding: 15px 10px;
+    position: relative;
+  }
+  
+  .card-header p {
+    font-size: 12px;
+    margin-top: 5px;
+    color: #bbb;
+  }
+  
+  .user-photo {
+    text-align: center;
+    margin-top: -30px;
+  }
+  
+  .user-info {
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  .user-info h2 {
+    margin: 5px 0;
+  }
+  
+  .designation {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .card-details {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .card-details p {
+    margin: 6px 0;
+  }
+  
+  .card-footer {
+    height: 30px;
+    background: linear-gradient(to right, red, #990000);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+  
+  
