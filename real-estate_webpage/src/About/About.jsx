@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import Rellax from 'rellax';
 import Navbar from '../Components/Navbar'
 import aboutImg from '../assets/about-banner-1.jpg'
 import missionImg from '../assets/mission-thumb-1.jpg'
@@ -12,15 +13,8 @@ import Footer from '../Components/Footer'
 
 const About = () => {
 
-  const [offsetY, setOffsetY] = useState(0);
-
-  const handleScroll = () => {
-    setOffsetY(window.scrollY); // Track scroll position
-  };
-
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    new Rellax('.rellax');
   }, []);
 
   return (
@@ -43,10 +37,8 @@ const About = () => {
           <img
             src={aboutImg}
             alt="hero"
-            className="w-full h-full object-contain transition-transform duration-300 ease-in-out rounded-[20px]"
-            style={{
-              transform: `translateY(-${offsetY * 0.3}px)`,
-            }}
+            className="rellax w-full h-full object-contain transition-transform duration-300 ease-in-out rounded-[20px]"
+            data-rellax-speed='3'
           />
         </div>
       </div>
