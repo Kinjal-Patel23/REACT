@@ -1,93 +1,126 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
+body {
+  font-family: sans-serif;
+  padding: 20px;
+  /* Gehra Gradient Background */
+  background: linear-gradient(135deg, #4a6e8e, #2f4f6f, #223143);
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  body {
-    height: 100vh;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.comment-form-container {
+  /* Form ka background color - background se match karne ki koshish */
+  background-color: rgba(74, 110, 142, 0.7); /* Pehla color, thoda transparent */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  margin: 0 auto;
+}
 
-  .login-container {
-    background-color: #ffffff;
-    padding: 40px 30px;
-    border-radius: 16px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-    width: 360px;
-  }
+h2 {
+  color: #ffffff; /* White heading */
+  margin-bottom: 20px;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Heading shadow */
+}
 
-  .login-container h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    color: #333;
-  }
+.form-group {
+  margin-bottom: 20px;
+}
 
-  .input-group {
-    margin-bottom: 20px;
-    position: relative;
-  }
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #ffffff; /* White label */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Label shadow */
+}
 
-  .input-group label {
-    position: absolute;
-    top: -10px;
-    left: 14px;
-    background-color: #fff;
-    padding: 0 6px;
-    font-size: 14px;
-    color: #666;
-  }
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.9); /* Input background */
+  color: #343a40;
+}
 
-  .input-group input {
-    width: 100%;
-    padding: 14px;
-    padding-left: 16px;
-    border-radius: 10px;
-    border: 1.5px solid #ccc;
-    font-size: 15px;
-    background-color: #f9f9f9;
-    transition: border-color 0.3s ease;
-  }
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
 
-  .input-group input:focus {
-    border-color: #667eea;
-    outline: none;
-    background-color: #f1f5ff;
-  }
+textarea {
+  resize: vertical;
+  height: 120px;
+}
 
-  .login-btn {
-    width: 100%;
-    padding: 14px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
+.btn-post {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
 
-  .login-btn:hover {
-    background: linear-gradient(135deg, #5c6bc0, #6a4fa3);
-  }
+.btn-post:hover {
+  background-color: #0056b3;
+}
 
-  .bottom-text {
-    text-align: center;
-    margin-top: 16px;
-    font-size: 14px;
-    color: #666;
-  }
+.btn-post:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
 
-  .bottom-text a {
-    color: #667eea;
-    text-decoration: none;
-  }
+.display {
+  border: 2px solid #4CAF50;       
+  border-radius: 10px;             
+  padding: 20px;                   
+  margin: 20px auto;               
+  max-width: 500px;                
+  background-color: #f9f9f9;       
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
 
-  .bottom-text a:hover {
-    text-decoration: underline;
+.display h2 {
+  color: #4CAF50;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.display p {
+  font-size: 18px;        
+  font-weight: 600;        
+  margin: 8px 0;
+  color: #333;
+  line-height: 1.6;
+}
+
+
+
+@media (max-width: 768px) {
+  .comment-form-container {
+      padding: 15px;
   }
+  input[type="text"],
+  textarea{
+      font-size: 14px;
+  }
+  .btn-post{
+      font-size: 14px;
+  }
+}

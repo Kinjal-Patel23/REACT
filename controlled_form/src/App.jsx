@@ -1,51 +1,61 @@
-import {useState} from 'react'
+import { useState } from 'react'
 
 function App() {
 
-  let [email, setEmail] = useState();
-  let [psw, setPsw] = useState();
+  let [user, setUser] = useState({ username: "", comment: "" })
+  let [postData, setPostData] = useState();
 
-  let handleEmail = (e) => {
-    let value = e.target.value;
-    setEmail(value);
-    console.log(value)
-  }
+  let handleInput = (e) => {
+    const { name, value } = e.target;
+    console.log(`${name}, ${value}`);
 
-  let handlePsw = (e) => {
-    let value = e.target.value;
-    setPsw(value);
-    console.log(value);
+    setUser((p) => ({ ...p, [name]: value }));
   }
 
   let handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email);
-    console.log(psw);
+
+    if (user.username === "") {
+      alert("please enter your name...");
+      return;
+    }
+
+    if (user.comment === "") {
+      alert("please enter your comment...");
+      return;
+    }
+
+    console.log(user);
+
+    setPostData(user);
+    setUser({username: "", comment: ""});
   }
 
   return (
     <>
-
-      <div className="login-container">
-        <h2>Login</h2>
+      <div className="comment-form-container">
+        <h2>Leave a Comment/Review</h2>
         <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" placeholder="Enter your email" onChange={handleEmail} required />
+          <div className="form-group">
+            <label htmlFor="name">Name:</label>
+            <input type="text" value={user.username} id="name" name="username" placeholder="Enter your name" onChange={handleInput}/>
           </div>
-
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" placeholder="Enter your password" onChange={handlePsw} required />
+          <div className="form-group">
+            <label htmlFor="comment">Your Comment/Review:</label>
+            <textarea id="comment" value={user.comment} name="comment" placeholder="Write your comment or review here" onChange={handleInput}/>
           </div>
-
-          <button type="submit" className="login-btn">Login</button>
+          <button type="submit" className="btn-post">Post Comment</button>
         </form>
-        <div className="bottom-text">
-          Don't have an account? <a href="#">Register</a>
-        </div>
       </div>
 
+      {postData && (
+        <div className='display'>
+        <h2>Comment / Review</h2>
+        <p>{postData.username}</p>
+        <p>{postData.comment}</p>
+      </div>
+      )}
+      
     </>
   )
 }
