@@ -1,0 +1,107 @@
+import React from 'react'
+import "remixicon/fonts/remixicon.css";
+import { useState, useEffect, useRef } from 'react'
+import Cookies from 'js-cookie'
+
+const Cookie = () => {
+
+  const [task, setTask] = useState("");
+  const [list, setList] = useState(() => {
+    let getData = Cookies.get("user");
+    if(!getData) return [];
+    return JSON.parse(getData);
+  });
+
+  const [edit, setEdit] = useState("");
+  const inputTask = useRef("");
+
+  let handleInput = ((e) => {
+    let value = e.target.value;
+    setTask(value);
+    console.log(value);
+  })
+  
+  useEffect(() => {
+    Cookies.set("user", JSON.stringify(list), {expires:2});
+  },[list]);
+
+  let handleAddBtn = ((e) => {
+    e.preventDefault();
+
+    if (task !== "") 
+    {
+      if (edit !== "") 
+      {
+        const updateTask = list.map((item, index) => {
+          if (index === edit) 
+          {
+            return task;  
+          }
+          return item;
+        })  
+        setList(updateTask);
+        setEdit("");
+      }
+      else
+      {
+        setList([...list, task]);
+      }
+      setTask("");
+    }
+    else
+    {
+        alert("Write Something....");
+    }
+  })
+
+  let handleDeleteBtn = ((index) => {
+    let updateTask = list.filter((tasks, i) => i !== index)
+    setList(updateTask);
+  })
+
+  let handleEditBtn = (i) => {
+    setTask(list[i]);
+    setEdit(i);
+    inputTask.current.focus();
+}
+
+  let handleRemove = (() => {
+    Cookies.remove("user");
+    setList([]);
+  })
+
+  return (
+    <>
+      <div id="root">
+                <div className="App">
+                    
+                    <div className="todolist">
+                        <div className="addTask">
+                            <input type="text" value={task} placeholder="Enter your task..." onChange={handleInput}/>
+                            <div>
+                              <button className="addtask-btn" onClick={handleAddBtn}>
+                                {edit === "" ? "Add Task" : "Update Task"}
+                              </button>
+                            </div>
+                        </div>
+
+                        <div className="lists">
+                            {list.map((t, i) => (
+                                <div key={i} className="list">
+                                    <p>{t}</p>
+                                    <div className="span-btns">
+                                        <span className="edit-btn" onClick={() => handleEditBtn(i)}><i className="ri-pencil-fill"></i></span>
+                                        <span className="delete-btn" onClick={() => handleDeleteBtn(i)}>🗑️</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <button className="clear-all-btn" onClick={handleRemove}>Clear All</button>
+                    </div>
+                </div>
+            </div>
+    </>
+  )
+}
+
+export default Cookie
