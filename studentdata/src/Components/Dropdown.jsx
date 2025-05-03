@@ -8,7 +8,7 @@ const Dropdown = ({selectCourse}) => {
 
   return (
     <select className="dropdown-select" onChange={dropDownCourse}>
-      <option value="">Select Course</option>
+      <option value="all">Select Course</option>
       <option value="HTML">HTML</option>
       <option value="CSS">CSS</option>
       <option value="JavaScript">JavaScript</option>
