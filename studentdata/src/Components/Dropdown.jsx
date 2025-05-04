@@ -22,4 +22,4 @@ const Dropdown = ({selectCourse}) => {
   );
 };
 
-export default Dropdown;
+export default Dropdown; 
