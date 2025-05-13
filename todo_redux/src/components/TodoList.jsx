@@ -12,9 +12,9 @@ const TodoList = () => {
     const [editIndex, setEditIndex] = useState(null);
     const [editText, setEditText] = useState('');
 
-    const handleEditClick = (index, text) => {
+    const handleEditClick = (index, task) => {
         setEditIndex(index);
-        setEditText(text);
+        setEditText(task.text);
     }
 
     const handleEditSave = (index) => {
@@ -50,10 +50,10 @@ const TodoList = () => {
                             </>
                         ) : (
                             <>
-                                <p>{todo}</p>
+                                <p>{todo.text}</p>
                                 <div style={{ display: "flex", gap: "15px" }}>
                                     <span className="delete-icon" onClick={() => handleEditClick(i, todo)}>🖉</span>
-                                    <span className="delete-icon" onClick={() => dispatch(deleteTask(todo))}>🗑️</span>
+                                    <span className="delete-icon" onClick={() => dispatch(deleteTask(todo.text))}>🗑️</span>
                                 </div>
                             </>
                         )
