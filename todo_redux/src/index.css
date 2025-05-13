@@ -1,0 +1,137 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #1f2937, #111827);
+  /* dark slate to black */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding-top: 60px;
+  color: #f9fafb;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+  background: #1e1e2f;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.input {
+  flex: 1;
+  padding: 12px 18px;
+  background: #2c2c3c;
+  color: #ffffff;
+  border: 2px solid #C08081;
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.input::placeholder {
+  color: #cccccc;
+}
+
+.input:focus {
+  border-color: #C08081;
+  box-shadow: 0 0 5px #C08081;
+}
+
+button {
+  padding: 12px 22px;
+  background-color: #C08081;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #9b5d5d;
+}
+
+.task-list {
+  margin-top: 20px;
+}
+
+.tasks {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2a2a3a;
+  padding: 12px 18px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border-left: 4px solid #C08081;
+}
+
+.tasks p {
+  margin: 0;
+  font-size: 16px;
+  color: #f3f4f6;
+}
+
+.delete-icon {
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform 0.2s ease;
+  color: #C08081;
+}
+
+.delete-icon:hover {
+  transform: scale(1.2);
+  color: #f87171;
+}
+
+.delete-all {
+  text-align: center;
+  margin-top: 20px;
+  color: #ef4444;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-family: cursive;
+}
+
+/* New styling for the editable input field */
+.edit-input {
+  background-color: transparent;
+  /* Makes the background transparent */
+  color: #f3f4f6;
+  /* Keeping the text color similar */
+  border: none;
+  /* No border */
+  font-size: 16px;
+  padding: 10px 12px;
+  outline: none;
+}
+
+.save-btn {
+  padding: 8px 15px;
+  background-color: #C08081;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-btn:hover {
+  background-color: #9b5d5d;
+}

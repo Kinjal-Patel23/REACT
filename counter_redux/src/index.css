@@ -1,0 +1,56 @@
+/* Reset */
+body, html, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+  }
+  
+  /* Main container */
+  .counter-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Counter number */
+  .counter-value {
+    font-size: 6rem;
+    color: #002366;
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
+  
+  /* Buttons wrapper */
+  .counter-buttons {
+    display: flex;
+    gap: 30px;
+  }
+  
+  /* Buttons */
+  .counter-btn {
+    width: 80px;
+    height: 80px;
+    font-size: 3rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 50%;
+    background-color: #C08081; /* Vintage Rose */
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, background-color 0.3s ease;
+  }
+  
+  .counter-btn:hover {
+    background-color: #a66364;
+    transform: scale(1.1);
+  }
+  
+  .counter-btn:active {
+    transform: scale(0.95);
+  }
+  
