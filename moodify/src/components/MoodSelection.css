@@ -4,15 +4,9 @@
   margin-top: -20px;
 }
 
-/* .mood-selector h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #333;
-} */
-
  .split-title {
   font-family: 'Monoton', cursive;
-  font-size: 1.5rem; /* Smaller than before */
+  font-size: 1.5rem; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,10 +20,9 @@
 }
 
 .left-text {
-  color: white; /* Pure white */
+  color: white;
 }
 
-/* Optional glow effect for musical look */
 @keyframes glowSplitText {
   0% {
     text-shadow: 0 0 5px #fff;
@@ -73,14 +66,12 @@
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* Mood Colors */
 .happy { background-color: #EFEFF0; }
 .sad { background-color: #EFEFF0; }
 .stressed { background: linear-gradient(to right, #EFEFF0 30%, #2E234B 50%); color: white; }
 .excited { background-color: #2E234B;  color: white;}
 .angry { background-color: #2E234B; color: white; }
 
-/* Radio Styling */
 .mood-btn input[type="radio"] {
   display: none;
 }
