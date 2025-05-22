@@ -1,0 +1,107 @@
+.mood-selector {
+  text-align: center;
+  padding: 10px;
+  margin-top: -20px;
+}
+
+/* .mood-selector h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+} */
+
+ .split-title {
+  font-family: 'Monoton', cursive;
+  font-size: 1.5rem; /* Smaller than before */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  animation: glowSplitText 3s ease-in-out infinite;
+  color: white;
+  word-spacing: 10px;
+}
+
+.left-text {
+  color: white; /* Pure white */
+}
+
+/* Optional glow effect for musical look */
+@keyframes glowSplitText {
+  0% {
+    text-shadow: 0 0 5px #fff;
+  }
+  50% {
+    text-shadow: 0 0 15px #fff, 0 0 25px #a27ef1;
+  }
+  100% {
+    text-shadow: 0 0 5px #fff;
+  }
+}
+
+
+.mood-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+  margin-top: -12px;
+}
+
+.mood-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #f0f0f0;
+  color: #333;
+  position: relative;
+}
+
+.mood-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Mood Colors */
+.happy { background-color: #EFEFF0; }
+.sad { background-color: #EFEFF0; }
+.stressed { background: linear-gradient(to right, #EFEFF0 30%, #2E234B 50%); color: white; }
+.excited { background-color: #2E234B;  color: white;}
+.angry { background-color: #2E234B; color: white; }
+
+/* Radio Styling */
+.mood-btn input[type="radio"] {
+  display: none;
+}
+
+.radio-style {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #666;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.mood-btn input[type="radio"]:checked + .radio-style::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 8px;
+  height: 8px;
+  background: #A855F7;
+  border-radius: 50%;
+}

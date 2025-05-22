@@ -1,0 +1,36 @@
+.quote-box {
+  background: linear-gradient(to right, #EFEFF0 30%, #2E234B 50%);
+  padding: 15px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 800px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease;
+  margin-top: 15px;
+}
+
+.quote-title {
+  font-size: 26px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.quote-text {
+  font-size: 18px;
+  font-style: italic;
+  color: #463393;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
