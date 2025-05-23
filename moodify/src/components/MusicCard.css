@@ -7,7 +7,6 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   max-width: 680px;
   height: 400px;
-  /* margin: 40px auto; */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -107,7 +106,7 @@
 }
 
 .replay-icon:hover {
-  color: #4A33A8; /* Purple on hover */
+  color: #4A33A8;
 }
 
 
@@ -151,8 +150,6 @@
   height: 40px;
   border: none;
   border-radius: 50%;
-  /* background: #fff; */
-  /* box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); */
   box-shadow:
     0 8px 15px rgba(0, 0, 0, 0.25),
     0 12px 20px rgba(0, 0, 0, 0.2),
@@ -178,7 +175,6 @@
 .inner-circle {
   width: 30px;
   height: 30px;
-  /* background: linear-gradient(145deg, #a64ca6, #c66dd9); */
   background-color: #4A33A8;
   border-radius: 50%;
   display: flex;
@@ -188,7 +184,6 @@
     inset -4px -4px 10px rgba(255, 255, 255, 0.3),
     inset 4px 4px 10px rgba(0, 0, 0, 0.2),
     0 4px 6px rgba(0, 0, 0, 0.3);
-  /* outer glow */
 }
 
 .inner-circle i {
