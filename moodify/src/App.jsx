@@ -15,9 +15,9 @@ function App() {
     <>
 
       <div className="app-wrapper">
-        <MoodSelection moodChange={setSelectMood}/>
-        {selectMood && <MusicCard selectMood={selectMood} songIndex={songIndex} setSongIndex={setSongIndex}/>}
-        <QuoteGenerator selectMood={selectMood} trigger={songIndex}/>
+        <MoodSelection moodChange={setSelectMood} />
+        {selectMood && <MusicCard selectMood={selectMood} songIndex={songIndex} setSongIndex={setSongIndex} />}
+        <QuoteGenerator selectMood={selectMood} trigger={songIndex} />
       </div>
     </>
   )

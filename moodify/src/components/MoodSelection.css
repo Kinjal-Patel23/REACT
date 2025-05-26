@@ -4,9 +4,9 @@
   margin-top: -20px;
 }
 
- .split-title {
+.split-title {
   font-family: 'Monoton', cursive;
-  font-size: 1.5rem; 
+  font-size: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,9 +27,11 @@
   0% {
     text-shadow: 0 0 5px #fff;
   }
+
   50% {
     text-shadow: 0 0 15px #fff, 0 0 25px #a27ef1;
   }
+
   100% {
     text-shadow: 0 0 5px #fff;
   }
@@ -63,14 +65,31 @@
 
 .mood-btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.happy { background-color: #EFEFF0; }
-.sad { background-color: #EFEFF0; }
-.stressed { background: linear-gradient(to right, #EFEFF0 30%, #2E234B 50%); color: white; }
-.excited { background-color: #2E234B;  color: white;}
-.angry { background-color: #2E234B; color: white; }
+.happy {
+  background-color: #EFEFF0;
+}
+
+.sad {
+  background-color: #EFEFF0;
+}
+
+.stressed {
+  background: linear-gradient(to right, #EFEFF0 30%, #2E234B 50%);
+  color: white;
+}
+
+.excited {
+  background-color: #2E234B;
+  color: white;
+}
+
+.angry {
+  background-color: #2E234B;
+  color: white;
+}
 
 .mood-btn input[type="radio"] {
   display: none;
@@ -86,7 +105,7 @@
   flex-shrink: 0;
 }
 
-.mood-btn input[type="radio"]:checked + .radio-style::after {
+.mood-btn input[type="radio"]:checked+.radio-style::after {
   content: '';
   position: absolute;
   top: 3px;

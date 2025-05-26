@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .app-wrapper {
@@ -19,4 +19,3 @@
   background: linear-gradient(to left, #EFEFF0 30%, #2E234B 50%);
   backdrop-filter: blur(12px);
 }
-
