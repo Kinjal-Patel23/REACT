@@ -53,7 +53,7 @@ const TodoList = () => {
                                 <p>{todo.text}</p>
                                 <div style={{ display: "flex", gap: "15px" }}>
                                     <span className="delete-icon" onClick={() => handleEditClick(i, todo)}>🖉</span>
-                                    <span className="delete-icon" onClick={() => dispatch(deleteTask(todo.text))}>🗑️</span>
+                                    <span className="delete-icon" onClick={() => dispatch(deleteTask(i))}>🗑️</span>
                                 </div>
                             </>
                         )

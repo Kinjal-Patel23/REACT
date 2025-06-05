@@ -4,7 +4,7 @@ export const reducer = (state = [], action) => {
             return [...state, {text: action.payload}];
 
         case "DELETE_TASK" :
-            return state.filter((idx) => idx !== action.payload);
+            return state.filter((_,idx) => idx !== action.payload);
 
         case "CLEAR_TODO" :
             return [];
