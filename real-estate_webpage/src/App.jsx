@@ -18,17 +18,18 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/About" element={<About/>}/>
-          <Route path="/Pages" element={<Pages/>}/>
-          <Route path="/Blog" element={<Blog/>}/>
-          <Route path="/Cart" element={<Cart/>}/>
-          <Route path="/Exploreall" element={<Exploreall/>}/>
-        </Routes>
-      </Router>
-    </>
+
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/About" element={<About/>}/>
+            <Route path="/Pages" element={<Pages/>}/>
+            <Route path="/Blog" element={<Blog/>}/>
+            <Route path="/Cart" element={<Cart/>}/>
+            <Route path="/Exploreall" element={<Exploreall/>}/>
+          </Routes>
+        </Router>
+      </>
   )
 }
 

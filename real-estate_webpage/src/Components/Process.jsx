@@ -1,9 +1,41 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import processImg1 from '../assets/process-thumb-1.jpg'
 import processImg2 from '../assets/process-thumb-2.jpg'
 import processImg3 from '../assets/process-thumb-3.jpg'
 
 const Process = () => {
+    const [currentImage, setCurrentImage] = useState(processImg1);
+    const step1Ref = useRef(null);
+    const step2Ref = useRef(null);
+    const step3Ref = useRef(null);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            
+            // Get positions of each step
+            const step1Position = step1Ref.current?.offsetTop;
+            const step2Position = step2Ref.current?.offsetTop;
+            const step3Position = step3Ref.current?.offsetTop;
+            
+            // Check which step is in view
+            if (scrollPosition + windowHeight / 2 >= step3Position) {
+                setCurrentImage(processImg3);
+            } else if (scrollPosition + windowHeight / 2 >= step2Position) {
+                setCurrentImage(processImg2);
+            } else {
+                setCurrentImage(processImg1);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Initial check
+        
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     return (
         <>
@@ -17,9 +49,9 @@ const Process = () => {
                             Find your dream house & follow our process
                         </p>
                     </div>
-                    <div className='processCont w-full lg:w-[1200px] h-auto lg:h-[1500px]  flex flex-col lg:flex-row justify-between gap-10 px-4'>
+                    <div className='processCont w-full lg:w-[1200px] h-auto lg:h-[1500px] flex flex-col lg:flex-row justify-between gap-10 px-4'>
                         <div className='subProcessCont w-full lg:w-[496px] flex flex-col gap-[80px]'>
-                            <div  className='step1' data-aos="fade-up">
+                            <div ref={step1Ref} className='step1' data-aos="fade-up">
                                 <div className='stepText w-[80px] h-[40px] mt-[40px] mx-auto lg:mx-0 bg-[#F7F7F7] border-2 border-[#E8E8E8] rounded-[50px] flex items-center justify-center'>
                                     <p className='text-[13px] sm:text-[14px] uppercase text-[#333]'>step-1</p>
                                 </div>
@@ -36,7 +68,7 @@ const Process = () => {
                                     <img src={processImg1} className="rounded-[20px] w-full h-auto" />
                                 </div>
                             </div>
-                            <div  className='step2' data-aos="fade-up">
+                            <div ref={step2Ref} className='step2' data-aos="fade-up">
                                 <div className='stepText w-[80px] h-[40px] mt-[40px] mx-auto lg:mx-0 bg-[#F7F7F7] border-2 border-[#E8E8E8] rounded-[50px] flex items-center justify-center'>
                                     <p className='text-[13px] sm:text-[14px] uppercase text-[#333]'>step-2</p>
                                 </div>
@@ -52,7 +84,7 @@ const Process = () => {
                                     <img src={processImg2} className="rounded-[20px] w-full h-auto" />
                                 </div>
                             </div>
-                            <div  className='step3' data-aos="fade-up">
+                            <div ref={step3Ref} className='step3' data-aos="fade-up">
                                 <div className='stepText w-[80px] h-[40px] mt-[40px] mx-auto lg:mx-0 bg-[#F7F7F7] border-2 border-[#E8E8E8] rounded-[50px] flex items-center justify-center'>
                                     <p className='text-[13px] sm:text-[14px] uppercase text-[#333]'>step-3</p>
                                 </div>
@@ -71,7 +103,7 @@ const Process = () => {
                             </div>
                         </div>
                         <div className='processImg w-[540px] h-[450px] sticky top-[100px] hidden lg:block'>
-                            <img src={processImg1} className="rounded-[20px] w-full h-full object-cover" />
+                            <img src={currentImage} className="rounded-[20px] w-full h-full object-cover transition-opacity duration-500" />
                         </div>
                     </div>
                 </div>

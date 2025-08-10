@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Navbar from '../Components/Navbar'
 import proImg1 from '../assets/properties-thumb-1.jpg'
 import proImg2 from '../assets/properties-thumb-2.jpg'
@@ -18,7 +19,7 @@ import Faq from '../Components/Faq'
 import Footer from '../Components/Footer'
 
 const Exploreall = () => {
-
+    const navigate = useNavigate();
     const properties = [
         {
             id: 1,
@@ -177,20 +178,53 @@ const Exploreall = () => {
             parking: 1
         }
     ];
-
+    
     const [selectedLocation, setSelectedLocation] = useState("all");
     const [selectedType, setSelectedType] = useState("all");
     const [searchText, setSearchText] = useState("");
-
+    
+    // Initialize cart from localStorage
+    const [cart, setCart] = useState([]);
+    
+    // Load cart from localStorage on component mount
+    useEffect(() => {
+        const savedCart = localStorage.getItem('cart');
+        if (savedCart) {
+            setCart(JSON.parse(savedCart));
+        }
+    }, []);
+    
+    // Save cart to localStorage whenever it changes
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
+    
     const filterProperties = properties.filter((p) =>
         (selectedLocation === "all" ? true : p.address.toLowerCase().includes(selectedLocation.toLowerCase())) &&
         (selectedType === "all" ? true : p.type.toLowerCase() === selectedType.toLowerCase()) &&
         (searchText === "" ? true : p.name.toLowerCase().includes(searchText.toLowerCase()))
       );
-
-   
     
-
+    const addToCart = (property) => {
+        // Check if property is already in cart
+        const existingItem = cart.find(item => item.id === property.id);
+        
+        if (existingItem) {
+            // If already in cart, increment quantity
+            setCart(cart.map(item => 
+                item.id === property.id 
+                    ? { ...item, quantity: item.quantity + 1 } 
+                    : item
+            ));
+        } else {
+            // If not in cart, add with quantity 1
+            setCart([...cart, { ...property, quantity: 1 }]);
+        }
+        
+        // Show success message
+        alert(`${property.name} has been added to your cart!`);
+    };
+    
     return (
         <>
             <Navbar />
@@ -211,7 +245,6 @@ const Exploreall = () => {
                     <div className='ltc w-full lg:w-[332px] flex flex-col sm:flex-row justify-between items-center gap-4 lg:ms-[30px]'>
                         <Location selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />
                         <Type onChange={(value) => setSelectedType(value)} />
-
                         <div className='category w-full sm:w-[110px]'>
                             <select className='w-full h-[35px] text-[#0c0407] text-[14px] bg-transparent rounded-md px-2 focus:outline-none'>
                                 <option value="" hidden>Category</option>
@@ -221,7 +254,6 @@ const Exploreall = () => {
                             </select>
                         </div>
                     </div>
-
                     {/* Search Box */}
                     <div className='searchDiv w-full lg:w-[300px] h-[60px] bg-[#fff] border border-[#E8E8E8] rounded-[10px] flex items-center justify-between px-2 lg:mr-[30px]'>
                         <input
@@ -235,24 +267,22 @@ const Exploreall = () => {
                             <i className="ri-search-line text-[#fff] text-[18px]"></i>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
-
-            {/* <div className='exploreCont w-full h-auto flex items-center justify-center'>
+            <div className='exploreCont w-full h-auto flex items-center justify-center px-[15px] lg:px-0'>
                 <div className='subExploreCont w-full lg:w-[1200px] h-auto flex flex-col justify-between'>
-                    <div className='exploreBox w-full lg:w-[1200px] h-auto flex flex-wrap justify-center gap-[20px] mt-[20px]'>
+                    
+                    <div className='exploreBox w-full h-auto flex flex-wrap justify-center gap-[20px] mt-[20px]'>
                         {filterProperties.map((property, index) => (
-                            <div key={index} className='w-[373px] h-[411px] flex flex-col justify-between mt-[10px]'>
-                                <div className="sunsetImg w-[373px] h-[300px] rounded-[20px] relative overflow-hidden group">
+                            <div key={index} className='w-full sm:w-[300px] md:w-[340px] lg:w-[373px] h-auto lg:h-[411px] flex flex-col justify-between mt-[10px]'>
+                                
+                                <div className="sunsetImg w-full h-[250px] sm:h-[280px] lg:h-[300px] rounded-[20px] relative overflow-hidden group">
                                     <img
                                         src={property.img}
-                                        className="w-full h-full cursor-pointer object-cover absolute top-0 left-0 z-0 transition-transform duration-500 ease-in-out group-hover:scale-110"
+                                        className="w-full h-full object-cover absolute top-0 left-0 z-0 transition-transform duration-500 ease-in-out group-hover:scale-110"
                                         alt="Sunset"
                                     />
-                                    <div className="relative w-[373px] h-[60px] z-10 flex items-center justify-center gap-[160px]">
+                                    <div className="relative w-full h-[60px] z-10 flex items-center justify-between px-[20px]">
                                         <div className='rent w-[54px] h-[30px] bg-[#fff] rounded-[50px] flex items-center justify-center'>
                                             <p className='text-[14px]'>{property.type}</p>
                                         </div>
@@ -260,110 +290,53 @@ const Exploreall = () => {
                                             <p className='text-[14px]'>{property.price}</p>
                                         </div>
                                     </div>
+                                    
+                                    {/* Cart icon that appears on hover */}
+                                    <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <button 
+                                            className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg transform transition-transform duration-300 hover:scale-110"
+                                            onClick={() => addToCart(property)}
+                                        >
+                                            <i className="ri-shopping-cart-2-line text-black text-xl"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className='sunsetCont w-[373px] h-[99px] flex flex-col justify-between'>
-                                    <p className='text-[24px] leading-[24px] cursor-pointer'>{property.name}</p>
-                                    <div className='sunsetLocation w-[373px] h-[20px] flex items-center'>
-                                        <i class="ri-map-pin-2-line"></i>
+                                <div className='sunsetCont w-full h-auto lg:h-[99px] flex flex-col justify-between mt-[10px]'>
+                                    <p className='text-[20px] lg:text-[24px] leading-[24px] cursor-pointer'>{property.name}</p>
+                                    <div className='sunsetLocation w-full h-auto flex items-center mt-[4px]'>
+                                        <i className="ri-map-pin-2-line"></i>
                                         <p className='ps-[4px] text-[14px] text-[#14161c] leading-[26px]'>{property.address}</p>
                                     </div>
-                                    <div className='sunsetDetail w-[373px] h-[36px] flex gap-[4px]'>
-                                        <div className='sqft w-[116px] h-[36px] border border-[#EFEFEF] rounded-[5px] flex items-center justify-center gap-[4px]'>
-                                            <i class="ri-drag-move-2-fill"></i>
+                                    <div className='sunsetDetail w-full h-auto flex flex-wrap gap-[6px] mt-[10px]'>
+                                        <div className='sqft flex-1 min-w-[70px] h-[36px] border border-[#EFEFEF] rounded-[5px] flex items-center justify-center gap-[4px]'>
+                                            <i className="ri-drag-move-2-fill"></i>
                                             <p className='text-[14px]'>{property.sqft}</p>
                                         </div>
-                                        <div className='bed w-[63px] h-[36px] border border-[#EFEFEF] rounded-[5px] flex items-center justify-center gap-[4px]'>
-                                            <i class="ri-hotel-bed-line"></i>
+                                        <div className='bed flex-1 min-w-[60px] h-[36px] border border-[#EFEFEF] rounded-[5px] flex items-center justify-center gap-[4px]'>
+                                            <i className="ri-hotel-bed-line"></i>
                                             <p className='text-[14px]'>{property.bed}</p>
                                         </div>
-                                        <div className='w-[63px] h-[36px] border border-[#EFEFEF] rounded-[5px] flex items-center justify-center gap-[4px]'>
-                                            <i class="fa-solid fa-bath"></i>
+                                        <div className='flex-1 min-w-[60px] h-[36px] border border-[#EFEFEF] rounded-[5px] flex items-center justify-center gap-[4px]'>
+                                            <i className="fa-solid fa-bath"></i>
                                             <p className='text-[14px]'>{property.bath}</p>
                                         </div>
-                                        <div className='parking w-[63px] h-[36px] border border-[#EFEFEF] rounded-[5px] flex items-center justify-center gap-[4px]'>
-                                            <i class="ri-car-line"></i>
+                                        <div className='parking flex-1 min-w-[60px] h-[36px] border border-[#EFEFEF] rounded-[5px] flex items-center justify-center gap-[4px]'>
+                                            <i className="ri-car-line"></i>
                                             <p className='text-[14px]'>{property.parking}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         ))}
-
                     </div>
-                    <div className='exploreBtn w-[1200px] h-[48px] flex justify-center mt-[30px]'>
-                        <button className='w-[135px] h-[48px] bg-black rounded-[10px] text-[#fff] font-semibold cursor-pointer hover:bg-black/80 transition-all duration-200'>Explore all</button>
+                    <div className='exploreBtn w-full lg:w-[1200px] h-[48px] flex justify-center mt-[30px]'>
+                        <button className='w-[135px] h-[48px] bg-black rounded-[10px] text-[#fff] font-semibold cursor-pointer hover:bg-black/80 transition-all duration-200'>
+                            Explore all
+                        </button>
                     </div>
                 </div>
-            </div> */}
-
-<div className='exploreCont w-full h-auto flex items-center justify-center px-[15px] lg:px-0'>
-  <div className='subExploreCont w-full lg:w-[1200px] h-auto flex flex-col justify-between'>
-    
-    <div className='exploreBox w-full h-auto flex flex-wrap justify-center gap-[20px] mt-[20px]'>
-      {filterProperties.map((property, index) => (
-        <div key={index} className='w-full sm:w-[300px] md:w-[340px] lg:w-[373px] h-auto lg:h-[411px] flex flex-col justify-between mt-[10px]'>
-          
-          <div className="sunsetImg w-full h-[250px] sm:h-[280px] lg:h-[300px] rounded-[20px] relative overflow-hidden group">
-  <img
-    src={property.img}
-    className="w-full h-full object-cover absolute top-0 left-0 z-0 transition-transform duration-500 ease-in-out group-hover:scale-110"
-    alt="Sunset"
-  />
-  <div className="relative w-full h-[60px] z-10 flex items-center justify-between px-[20px]">
-    <div className='rent w-[54px] h-[30px] bg-[#fff] rounded-[50px] flex items-center justify-center'>
-      <p className='text-[14px]'>{property.type}</p>
-    </div>
-    <div className='price w-[120px] h-[30px] bg-[#fff] rounded-[50px] flex items-center justify-center'>
-      <p className='text-[14px]'>{property.price}</p>
-    </div>
-  </div>
-</div>
-
-
-          <div className='sunsetCont w-full h-auto lg:h-[99px] flex flex-col justify-between mt-[10px]'>
-            <p className='text-[20px] lg:text-[24px] leading-[24px] cursor-pointer'>{property.name}</p>
-
-            <div className='sunsetLocation w-full h-auto flex items-center mt-[4px]'>
-              <i className="ri-map-pin-2-line"></i>
-              <p className='ps-[4px] text-[14px] text-[#14161c] leading-[26px]'>{property.address}</p>
             </div>
-
-            <div className='sunsetDetail w-full h-auto flex flex-wrap gap-[6px] mt-[10px]'>
-              <div className='sqft flex-1 min-w-[70px] h-[36px] border border-[#EFEFEF] rounded-[5px] flex items-center justify-center gap-[4px]'>
-                <i className="ri-drag-move-2-fill"></i>
-                <p className='text-[14px]'>{property.sqft}</p>
-              </div>
-              <div className='bed flex-1 min-w-[60px] h-[36px] border border-[#EFEFEF] rounded-[5px] flex items-center justify-center gap-[4px]'>
-                <i className="ri-hotel-bed-line"></i>
-                <p className='text-[14px]'>{property.bed}</p>
-              </div>
-              <div className='flex-1 min-w-[60px] h-[36px] border border-[#EFEFEF] rounded-[5px] flex items-center justify-center gap-[4px]'>
-                <i className="fa-solid fa-bath"></i>
-                <p className='text-[14px]'>{property.bath}</p>
-              </div>
-              <div className='parking flex-1 min-w-[60px] h-[36px] border border-[#EFEFEF] rounded-[5px] flex items-center justify-center gap-[4px]'>
-                <i className="ri-car-line"></i>
-                <p className='text-[14px]'>{property.parking}</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      ))}
-    </div>
-
-    <div className='exploreBtn w-full lg:w-[1200px] h-[48px] flex justify-center mt-[30px]'>
-      <button className='w-[135px] h-[48px] bg-black rounded-[10px] text-[#fff] font-semibold cursor-pointer hover:bg-black/80 transition-all duration-200'>
-        Explore all
-      </button>
-    </div>
-
-  </div>
-</div>
-
-
             <Faq />
-
             <Footer />
         </>
     )
